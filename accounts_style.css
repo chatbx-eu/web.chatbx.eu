@@ -1,7 +1,7 @@
 body {
 	margin: 1em auto;
 	padding: 0;
-    max-width: 800px;
+	max-width: 800px;
 
 	font-family: sans-serif;
 	font-size: 16px;
@@ -66,32 +66,32 @@ p {
 }
 
 li {
-    margin-top: 1em;
-    font-weight: bold;
+	margin-top: 1em;
+	font-weight: bold;
 }
 
 li li {
 	margin-top: 0;
-    font-weight: normal;
+	font-weight: normal;
 }
 
 ol {
-    list-style: none;
-    padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 li > ul {
-    list-style-type: '- ';
-    padding-left: 2em;
+	list-style-type: '- ';
+	padding-left: 2em;
 }
 
 li > ul > li {
-    font-size: 75%;
+	font-size: 75%;
 }
 
 img {
@@ -99,18 +99,18 @@ img {
 }
 
 input {
-    display: block;
+	display: block;
 	color: var(--c-font);
 	background-color: var(--c-bg);
 	border: 1px solid var(--c-border);
 	border-radius: 5px;
-    padding: 0.5em;
+	padding: 0.5em;
 	width: 15em;
 }
 
 input:focus {
-    border-color: var(--c-font-green);
-    box-shadow: 0px 0px 5px var(--c-font-green-highlight);
+	border-color: var(--c-font-green);
+	box-shadow: 0px 0px 10px var(--c-font-green-highlight);
 }
 
 input[type="submit"] {
@@ -119,13 +119,14 @@ input[type="submit"] {
 	text-decoration: none;
 	text-transform: uppercase;
 
-    font-size: 110%;
+	font-size: 110%;
 	width: auto;
-    padding: 0.5em 1em;
+	padding: 0.5em 1em;
 	border-radius: 5px;
 	border: none;
 }
 
 input[type="submit"]:hover {
 	background-color: var(--c-bg-green-highlight);
+	box-shadow: 0px 0px 10px var(--c-font-green-highlight);
 }
