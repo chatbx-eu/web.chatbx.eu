@@ -1,0 +1,35 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Webchat - chatbx.eu</title>
+		<link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="https://www.chatbx.eu/favicon.ico" />
+		<link rel="icon" type="image/png" sizes="152x152" href="https://www.chatbx.eu/favicon-152.png" />
+		<link rel="apple-touch-icon-precomposed" type="image/png" sizes="152x152" href="https://www.chatbx.eu/favicon-152.png" />
+		<link type="text/css" rel="stylesheet" media="screen" href="converse.min.css" />
+		<script src="https://cdn.conversejs.org/3rdparty/libsignal-protocol.min.js"></script>
+		<script src="converse.min.js"></script>
+	</head>
+	<body class="converse-fullscreen">
+		<div id="conversejs-bg"></div>
+		<script>
+			converse.initialize({
+				locked_domain: 'chatbx.eu',
+				bosh_service_url: 'https://services.chatbx.eu/http-bind/',
+				authentication: 'login',
+				auto_reconnect: true,
+				trusted: false,
+				message_archiving: 'always',
+				view_mode: 'fullscreen',
+				auto_away: 300,
+				allow_chat_pending_contacts: true,
+				allow_non_roster_messaging: true,
+				auto_list_rooms: true,
+				allow_registration: true,
+				registration_domain: 'chatbx.eu'
+			});
+		</script>
+	</body>
+</html>
+
