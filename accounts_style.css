@@ -1,6 +1,6 @@
 body {
 	margin: 1em auto;
-	padding: 0;
+	padding: 0 1em;
 	max-width: 800px;
 
 	font-family: sans-serif;
@@ -20,7 +20,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-	html, body {
+	body {
 		--c-font: #f0f0f0;
 		--c-font-green: #34b734;
 		--c-font-green-highlight: #78d978;
