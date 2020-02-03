@@ -1,0 +1,148 @@
+diff --git a/sass/_core.scss b/sass/_core.scss
+index b5dea8219..bb5e6d695 100644
+--- a/sass/_core.scss
++++ b/sass/_core.scss
+@@ -141,11 +141,11 @@ body.converse-fullscreen {
+         flex-direction: row;
+         align-items: flex-start;
+         font-family: var(--branding-font);
+-        color: var(--link-color);
++        color: var(--chatbx-green);
+         margin-bottom: 1em;
+ 
+         .brand-name {
+-            color: var(--link-color);
++            color: var(--chatbx-green);
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+@@ -179,17 +179,16 @@ body.converse-fullscreen {
+     }
+ 
+     .brand-heading--inverse {
+-        .converse-svg-logo {
+-            margin-bottom: 0em;
+-            margin-top: -0.2em;
++        .brand-logo {
++            margin-top: -0.5em;
+         }
+         .byline {
+             margin: 0;
+             font-family: var(--heading-font);
+             font-size: 0.25em;
+-            opacity: 0.55;
+-            margin-left: -7em;
++            margin-left: auto;
+             word-spacing: 5px;
++			color: var(--text-color);
+         }
+     }
+ 
+diff --git a/sass/_variables.scss b/sass/_variables.scss
+index fec17a9d2..037295f61 100644
+--- a/sass/_variables.scss
++++ b/sass/_variables.scss
+@@ -4,7 +4,10 @@ $mobile_portrait_length: 480px !default;
+ #conversejs, #conversejs-bg, .converse-fullscreen {
+     --subdued-color: #A8ABA1;
+ 
+-    --green: #3AA569;
++	--chatbx-green: #34b734;
++	--chatbx-green-highlight: #78d978;
++
++    --green: var(--chatbx-green);
+     --redder-orange: #E77051;
+     --orange: #E7A151;
+     --light-blue: #578EA9;
+@@ -13,15 +16,15 @@ $mobile_portrait_length: 480px !default;
+     --chat-status-busy: var(--redder-orange);
+     --chat-status-away: var(--orange);
+ 
+-    --brand-heading-color: #387592; // $blue
++    --brand-heading-color: var(--chatbx-green);
+ 
+     --completion-light-color: #FFB9A7; // $lightest-red
+     --completion-normal-color: var(--redder-orange);
+     --completion-dark-color: #D24E2B; // $dark-red
+ 
+-    --link-color: var(--light-blue);
+-    --link-color-darken-20-percent: #345566; // darken($light-blue, 20%)
+-    --link-color-lighten-10-percent: #79a5ba; // lighten($light-blue, 10%)
++    --link-color: var(--chatbx-green);
++    --link-hover-color: var(--chatbx-green-highlight);
++    --link-color-lighten-10-percent: lighten(var(--link-color), 10%);
+     --dark-link-color: #206485; // $dark-blue
+     --global-background-color: #397491; // dark blue
+ 
+@@ -64,7 +67,7 @@ $mobile_portrait_length: 480px !default;
+ 
+     --highlight-color: #DCF9F6;
+ 
+-    --primary-color: var(--light-blue);
++    --primary-color: var(--chatbx-green);
+     --primary-color-dark:  #397491;
+ 
+     --secondary-color: #818479; // gray
+@@ -85,7 +88,7 @@ $mobile_portrait_length: 480px !default;
+     --chatbox-border-radius: 4px;
+ 
+     --controlbox-width: 250px;
+-    --controlbox-head-color: var(--light-blue);
++    --controlbox-head-color: var(--chatbx-green);
+     --controlbox-head-color-lighten-45-percent: #eff4f7; // lighten($light-blue, 45%)
+     --controlbox-pane-background-color: white;
+     --controlbox-heading-color: inherit;
+@@ -100,9 +103,9 @@ $mobile_portrait_length: 480px !default;
+     // TODO: figure out a way to concatenate custom properties with strings.
+     // --font-path: "webfonts/icomoon/fonts/";
+ 
+-    --normal-font: "Helvetica", "Arial", sans-serif;
+-    --heading-font: 'Muli', normal;
+-    --branding-font: 'Baumans', cursive;
++    --normal-font: sans-serif;
++    --heading-font: sans-serif;
++    --branding-font: sans-serif;
+     --heading-display: block;
+     --heading-color: white;
+ 
+diff --git a/src/templates/inverse_brand_heading.html b/src/templates/inverse_brand_heading.html
+index 5c96b2c9c..70a089dbb 100644
+--- a/src/templates/inverse_brand_heading.html
++++ b/src/templates/inverse_brand_heading.html
+@@ -1,32 +1,12 @@
+ <div>
+     <div class="container brand-heading-container">
+         <h1 class="brand-heading brand-heading--inverse">
+-            <svg class="converse-svg-logo"
+-                xmlns:svg="http://www.w3.org/2000/svg"
+-                xmlns="http://www.w3.org/2000/svg"
+-                xmlns:xlink="http://www.w3.org/1999/xlink"
+-                viewBox="0 0 364 364">
+-                <title>Converse</title>
+-                <g class="cls-1" id="g904">
+-                    <g data-name="Layer 2">
+-                        <g data-name="Layer 7">
+-                            <path
+-                                class="cls-3"
+-                                d="M221.46,103.71c0,18.83-29.36,18.83-29.12,0C192.1,84.88,221.46,84.88,221.46,103.71Z" />
+-                            <path
+-                                class="cls-4"
+-                                d="M179.9,4.15A175.48,175.48,0,1,0,355.38,179.63,175.48,175.48,0,0,0,179.9,4.15Zm-40.79,264.5c-.23-17.82,27.58-17.82,27.58,0S138.88,286.48,139.11,268.65ZM218.6,168.24A79.65,79.65,0,0,1,205.15,174a12.76,12.76,0,0,0-6.29,4.65L167.54,222a1.36,1.36,0,0,1-2.46-.8v-35.8a2.58,2.58,0,0,0-3.06-2.53c-15.43,3-30.23,7.7-42.73,19.94-38.8,38-29.42,105.69,16.09,133.16a162.25,162.25,0,0,1-91.47-67.27C-3.86,182.26,34.5,47.25,138.37,25.66c46.89-9.75,118.25,5.16,123.73,62.83C265.15,120.64,246.56,152.89,218.6,168.24Z" />
+-                        </g>
+-                    </g>
+-                </g>
+-            </svg>
++            <img class="brand-logo" alt="" src="https://www.chatbx.eu/img/chatbx.png" width="128px" height="128px" />
+             <span class="brand-name">
+-                <span class="brand-name__text">converse<span class="subdued">.js</span></span>
+-                <p class="byline">messaging freedom</p>
++                <span class="brand-name__text">chatbx.eu</span>
++                <p class="byline">Decentralized Instant Messaging with XMPP.</p>
+             </span>
+         </h1>
+-        <p class="brand-subtitle">{{{o.version_name}}}</p>
+-        <p class="brand-subtitle"><a target="_blank" rel="nofollow" href="https://conversejs.org">Open Source</a> XMPP chat client brought to you by <a target="_blank" rel="nofollow" href="https://opkode.com">Opkode</a> </p>
+-        <p class="brand-subtitle"><a target="_blank" rel="nofollow" href="https://hosted.weblate.org/projects/conversejs/#languages">Translate</a> it into your own language</p>
++        <p class="brand-subtitle">Powered by <a target="_blank" rel="nofollow" href="https://conversejs.org">converse.js</a> {{{o.version_name}}}</p>
+     </div>
+ </div>
